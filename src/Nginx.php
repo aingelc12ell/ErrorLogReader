@@ -1,7 +1,6 @@
 <?php
 
 namespace LogReader;
-use LogReader\Item;
 class Nginx extends LogAbstract {
     
     
@@ -30,10 +29,12 @@ class Nginx extends LogAbstract {
         }
     }
 
-    protected function _getType($message) {
+    protected function _getType($message): string
+    {
         if (preg_match('/^([a-zA-Z0-9 ()]+) "/', $message, $matches) && isset($matches[1])) {
             return trim($matches[1]);
         }
+        return 'Log';
     }
 
 }

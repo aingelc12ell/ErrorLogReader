@@ -2,11 +2,15 @@
 
 namespace LogReader\Storage;
 
+use LogReader\Item\LogAbstract;
+
 interface LogInterface {
+
+    public function config($config=[]);
     
-    public function save(\LogReader\Item\LogAbstract $item);
+    public function save(LogAbstract $item);
     
-    public function load();
+    public function load($params=[]);
     
-    public function loadUnique();
+    public function loadUnique($params=[]);
 }

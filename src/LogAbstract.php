@@ -2,11 +2,13 @@
 
 namespace LogReader;
 
+use SplFileObject;
+
 abstract class LogAbstract {
 
     /**
      *
-     * @var \SplFileObject
+     * @var SplFileObject
      */
     protected $_file;
 
@@ -32,14 +34,18 @@ abstract class LogAbstract {
     }
 
     public function setFile($filename) {
-        $this->_filename = $filename;
-        if (!is_file($filename)) {
+        if (!file_exists($filename)) {
             throw new Exception("File '$filename' does not exist");
         }
-        if (!is_readable($filename)) {
+        if (!is_file($filename)) { # you can disable this condition if it sends false positives
+            throw new Exception("File '$filename' is not a regular file.");
+        }
+        if (!is_readable($filename)) { # you can disable this condition if it sends false positives
             throw new Exception("File '$filename' is not readable");
         }
-        $this->_file = new \SplFileObject($filename);
+        $this->_filename = $filename;
+
+        $this->_file = new SplFileObject($filename);
     }
 
     public function setStorage(Storage\LogInterface $storage) {
@@ -53,7 +59,8 @@ abstract class LogAbstract {
      *
      * @return Storage\LogInterface
      */
-    public function getStorage() {
+    public function getStorage(): Storage\LogInterface
+    {
         return $this->_storage;
     }
     
@@ -61,7 +68,8 @@ abstract class LogAbstract {
      * 
      * @return string
      */
-    public function getFilename() {
+    public function getFilename(): string
+    {
         return $this->_filename;
     }
 }

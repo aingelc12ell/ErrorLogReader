@@ -2,33 +2,45 @@
 
 namespace LogReader\Storage;
 
+use LogReader\Item\LogAbstract;
+
 class LogArray implements LogInterface {
-    
+
+    protected $Config = [];
     /**
      *
      * @var array
      */
     protected $_data = array();
 
+    public function config($config = [])
+    {
+        // TODO: Implement config() method.
+    }
+
 
     /**
-     * 
+     *
+     * @param array $params
      * @return array
      */
-    public function load() {
+    public function load($params=[]): array
+    {
         return $this->_data;
     }
 
-    public function save(\LogReader\Item\LogAbstract $item) {
+    public function save(LogAbstract $item) {
         $this->_data[] = $item;
     }
-    
+
     /**
      * Returns unique errors
-     * 
+     *
+     * @param array $params
      * @return array
      */
-    public function loadUnique() {
+    public function loadUnique($params=[]): array
+    {
         $uniqRows = array();
         foreach ($this->_data as $item) {
             $itemId = $item->getId();

@@ -33,19 +33,23 @@ abstract class LogAbstract {
      * 
      * @return string
      */
-    public function getId() {
+    public function getId(): string
+    {
         return md5($this->getMessage());
     }
 
-    public function getTimestamp() {
+    public function getTimestamp(): string
+    {
         return $this->_timestamp;
     }
 
-    public function getType() {
+    public function getType(): string
+    {
         return $this->_type;
     }
 
-    public function getMessage() {
+    public function getMessage(): string
+    {
         return $this->_message;
     }
 
@@ -59,10 +63,6 @@ abstract class LogAbstract {
 
     public function setMessage($message) {
         $this->_message = $message;
-    }
-    
-    public function getIsNew() {
-        return $this->_isNew;
     }
 
     public function setIsNew($isNew) {

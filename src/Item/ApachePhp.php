@@ -19,7 +19,8 @@ class ApachePhp extends LogAbstract {
     protected $_referer = '';
     
     
-    public function getReferer() {
+    public function getReferer(): string
+    {
         return $this->_referer;
     }
 
@@ -32,7 +33,7 @@ class ApachePhp extends LogAbstract {
      * 
      * @param string $line
      */
-    public function appendStackTrace($line) {
+    public function appendStackTrace(string $line) {
         $this->_stackTrace[] = $line;
     }
     
@@ -40,7 +41,8 @@ class ApachePhp extends LogAbstract {
      * 
      * @return array
      */
-    public function getStackTrace() {
+    public function getStackTrace(): array
+    {
         return $this->_stackTrace;
     }
     
@@ -48,7 +50,7 @@ class ApachePhp extends LogAbstract {
      * 
      * @param string $clientIp
      */
-    public function setClientIp($clientIp) {
+    public function setClientIp(string $clientIp) {
         $this->_clientIp = $clientIp;
     }
     
@@ -56,7 +58,8 @@ class ApachePhp extends LogAbstract {
      * 
      * @return string
      */
-    public function getClientIp() {
+    public function getClientIp(): string
+    {
         return $this->_clientIp;
     }
 

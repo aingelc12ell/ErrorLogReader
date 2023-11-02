@@ -23,11 +23,13 @@ class Nginx extends LogAbstract {
     protected $_host = '';
     
     
-    public function getRequest() {
+    public function getRequest(): string
+    {
         return $this->_request;
     }
 
-    public function getHost() {
+    public function getHost(): string
+    {
         return $this->_host;
     }
 
@@ -40,7 +42,8 @@ class Nginx extends LogAbstract {
     }
 
     
-    public function getReferrer() {
+    public function getReferrer(): string
+    {
         return $this->_referrer;
     }
 
@@ -48,10 +51,10 @@ class Nginx extends LogAbstract {
         $this->_referrer = $referer;
     }
 
-    public function getRequestUrl() {
+    public function getRequestUrl(): string
+    {
         $request = preg_replace('/^GET (.+) HTTP.+/', '$1', $this->getRequest());
-        $url = 'http://' . $this->getHost() . $request;
-        return $url;
+        return 'http://' . $this->getHost() . $request;
     }
 
 }

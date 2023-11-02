@@ -4,10 +4,16 @@ require '../vendor/autoload.php';
 
 $logReader = new LogReader\ApachePhp(
         "/var/log/apache2/error.log",
-        new LogReader\Storage\LogArray());
+        (new LogReader\Storage\LogDB())->config([
+            'dbhost' => '127.0.0.1:3366',
+            'dbuser' => 'dbuser',
+            'dbpass' => 'qwerasdf',
+            'dbschema' => 'accesslogs',
+            'dbtable' => 'serverlog'
+        ]));
 $logReader->read();
 
-$logs = $logReader->getStorage()->load();
+$logs = $logReader->getStorage()->load(['start'=>0,'records'=>200]);
 $logs = array_reverse($logs);
 
 $colorizeType = function($type) {
@@ -40,7 +46,7 @@ $colorizeType = function($type) {
         <tr>
             <td><?=$item->getTimestamp()?></td>
             <td><?=$colorizeType($item->getType())?></td>
-            <td><?=nl2br(htmlspecialchars($item->getMessage()))?></td>
+            <td><?=str_replace(["\n",'\n','\\n'],'<br />',htmlspecialchars($item->getMessage()))?></td>
             <td><a href="<?=htmlspecialchars($item->getReferer())?>"><?=htmlspecialchars($item->getReferer())?></a></td>
         </tr>
         <?php } ?>

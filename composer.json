@@ -6,7 +6,8 @@
   "homepage"   : "http://accessph.net/LogReader",
   "license"    : "MIT",
   "require"    : {
-    "php"         : ">=5.5.0"
+    "php"         : ">=7.0",
+    "ext-mysqli": "*"
   },
   "minimum-stability": "dev",
   "authors"    : [
