@@ -30,29 +30,28 @@ $colorizeType = function($type) {
     }
     return '<span style="color: '.$color.'">' . $type . '</span>';
 };
-?>
-
-<p>File '<?=$logReader->getFilename()?>':</p>
-
-<?php if (count($logs)) { ?>
+if (count($logs)) {
+    echo '
     <table >
         <tr>
             <th>Date</th>
             <th>Error type</th>
             <th>Message</th>
             <th>Referrer</th>
-        </tr>
-        <?php foreach ($logs as $item) { ?>
+        </tr>';
+    foreach ($logs as $item) {
+        echo '
         <tr>
-            <td><?=$item->getTimestamp()?></td>
-            <td><?=$colorizeType($item->getType())?></td>
-            <td><?=str_replace(["\n",'\n','\\n'],'<br />',htmlspecialchars($item->getMessage()))?></td>
-            <td><a href="<?=htmlspecialchars($item->getReferer())?>"><?=htmlspecialchars($item->getReferer())?></a></td>
-        </tr>
-        <?php } ?>
-    </table>
-<?php } else { ?>
-    <p>
+            <td>' . $item->getTimestamp() . '</td>
+            <td>' . colorizeType($item->getType()) . '</td>
+            <td>' . str_replace(["\n",'\n','\\n'],'<br />',htmlspecialchars($item->getMessage())) . '</td>
+            <td>' . htmlspecialchars($item->getReferer()) . '</td>
+        </tr>';
+    }
+    echo '
+    </table>';
+} else {
+    echo '<p>
         <em>Empty data.</em>
-    </p>
-<?php } ?>
+    </p>';
+}

@@ -47,7 +47,7 @@ class LogDB implements LogInterface {
         $records = intval($params['records'] ?? 20);
         $records = $records < 0 ? 20 : $records;
         $res = $this->DB->query("SELECT * from `" . $this->Config['dbtable'] ."`"
-            ." ORDER BY `ID`"
+            ." ORDER BY `ID` DESC"
             ." LIMIT " . $start . "," . $records);
         while($r = $res->fetch_assoc()){
             $item = new ApachePhp();
