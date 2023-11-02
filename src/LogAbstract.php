@@ -68,7 +68,7 @@ abstract class LogAbstract {
      * 
      * @return string
      */
-    public function getFilename(): string
+    public function getFilename()
     {
         return $this->_filename;
     }

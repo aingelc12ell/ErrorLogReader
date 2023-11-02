@@ -44,7 +44,7 @@ if (count($logs)) {
         <tr>
             <td>' . $item->getTimestamp() . '</td>
             <td>' . colorizeType($item->getType()) . '</td>
-            <td>' . str_replace(["\n",'\n','\\n'],'<br />',htmlspecialchars($item->getMessage())) . '</td>
+            <td><pre>' . str_replace(["\n",'\n','\\n'],'<br />',htmlspecialchars($item->getMessage())) . '</pre></td>
             <td>' . htmlspecialchars($item->getReferer()) . '</td>
         </tr>';
     }

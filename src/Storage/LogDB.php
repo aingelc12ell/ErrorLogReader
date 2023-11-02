@@ -22,6 +22,7 @@ class LogDB implements LogInterface {
         'dbpass' => '',
         'dbschema' => 'errorlog',
         'dbtable' => 'logtable',
+        'records' => 20
     ];
     protected $DB = null;
 
@@ -44,10 +45,10 @@ class LogDB implements LogInterface {
         $this->DBConnect();
         $start = intval($params['start'] ?? 0);
         $start = max($start, 0);
-        $records = intval($params['records'] ?? 20);
+        $records = intval($this->Config['records'] ?? 20);
         $records = $records < 0 ? 20 : $records;
         $res = $this->DB->query("SELECT * from `" . $this->Config['dbtable'] ."`"
-            ." ORDER BY `ID` DESC"
+            ." ORDER BY `Date` DESC"
             ." LIMIT " . $start . "," . $records);
         while($r = $res->fetch_assoc()){
             $item = new ApachePhp();
