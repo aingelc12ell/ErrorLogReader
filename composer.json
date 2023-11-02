@@ -6,12 +6,7 @@
   "homepage"   : "http://accessph.net/LogReader",
   "license"    : "MIT",
   "require"    : {
-    "php"         : ">=5.5.0",
-    "ext-calendar": "*"
-  },
-  "require-dev": {
-    "phpunit/phpunit": "*",
-    "ext-dom": "*"
+    "php"         : ">=5.5.0"
   },
   "minimum-stability": "dev",
   "authors"    : [
