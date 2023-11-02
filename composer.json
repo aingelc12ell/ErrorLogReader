@@ -1,0 +1,32 @@
+{
+  "name"       : "aingelc12ell/errorlogreader",
+  "type"       : "library",
+  "description": "Error log parser for Apache and Nginx for further storage and management",
+  "keywords"   : ["calendar"],
+  "homepage"   : "http://accessph.net/LogReader",
+  "license"    : "MIT",
+  "require"    : {
+    "php"         : ">=5.5.0",
+    "ext-calendar": "*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "*",
+    "ext-dom": "*"
+  },
+  "minimum-stability": "dev",
+  "authors"    : [
+    {
+      "name"    : "Aingel Sy",
+      "email"   : "aingel@accessph.net",
+      "homepage": "http://accessph.net",
+      "role"    : "Developer"
+    }
+  ],
+  "autoload"   : {
+    "psr-4": {
+      "LogReader\\": "src/",
+      "LogReader\\Item\\" : "src/Item/",
+      "LogReader\\Storage\\" : "src/Storage"
+    }
+  }
+}
