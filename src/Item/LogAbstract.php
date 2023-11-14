@@ -33,22 +33,22 @@ abstract class LogAbstract {
      * 
      * @return string
      */
-    public function getId(): string
+    public function getId(): string|null
     {
         return md5($this->getMessage());
     }
 
-    public function getTimestamp(): string
+    public function getTimestamp(): string|null
     {
         return $this->_timestamp;
     }
 
-    public function getType(): string
+    public function getType(): string|null
     {
         return $this->_type;
     }
 
-    public function getMessage(): string
+    public function getMessage(): string|null
     {
         return $this->_message;
     }

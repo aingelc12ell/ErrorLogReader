@@ -100,7 +100,7 @@ class LogDB implements LogInterface {
     }
     private function DBConnect(){
         if(is_null($this->DB)){
-            $this->DB = new mysqli($this->Config['dbhost'], $this->Config['dbuser'], $this->Config['dbpass'], $this->Config['dbschema']);
+            $this->DB = new \mysqli($this->Config['dbhost'], $this->Config['dbuser'], $this->Config['dbpass'], $this->Config['dbschema']);
         }
     }
 
