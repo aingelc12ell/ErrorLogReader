@@ -61,6 +61,10 @@ class LogDB implements LogInterface {
         return $this->_data;
     }
 
+    public function DB(){
+        return $this->DB;
+    }
+
     public function save(LogAbstract $item) {
         # $this->_data[] = $item;
         # send to DB
