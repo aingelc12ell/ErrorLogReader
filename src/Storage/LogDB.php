@@ -43,11 +43,23 @@ class LogDB implements LogInterface {
         # return $this->_data;
         # read from DB
         $this->DBConnect();
+        $conditions = [];
+        if(isset($params['date']) && date('Y-m-d',strtotime($params['date'])) == $params['date']){
+            $conditions[] = "`Date` like '".$params['date']."%'";
+        }
+        if(isset($params['criteria']) && strlen($params['criteria']) > 3){
+            $str = filter_input(INPUT_GET,'criteria',FILTER_SANITIZE_STRING);
+            if($str!==false) {
+                $criteria = $this->DB->real_escape_string($str);
+                $conditions[] = "`Error` like '%" . $criteria . "%'";
+            }
+        }
         $start = intval($params['start'] ?? 0);
         $start = max($start, 0);
         $records = intval($this->Config['records'] ?? 20);
         $records = $records < 0 ? 20 : $records;
         $res = $this->DB->query("SELECT * from `" . $this->Config['dbtable'] ."`"
+            .(count($conditions) > 0 ? " WHERE ".(implode(" AND ",$conditions)) : "")
             ." ORDER BY `Date` DESC"
             ." LIMIT " . $start . "," . $records);
         while($r = $res->fetch_assoc()){
