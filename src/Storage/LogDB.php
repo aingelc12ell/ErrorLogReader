@@ -48,7 +48,7 @@ class LogDB implements LogInterface {
             $conditions[] = "`Date` like '".$params['date']."%'";
         }
         if(isset($params['criteria']) && strlen($params['criteria']) > 3){
-            $str = filter_input(INPUT_GET,'criteria',FILTER_SANITIZE_STRING);
+            $str = filter_input(INPUT_GET,'criteria',FILTER_SANITIZE_SPECIAL_CHARS);
             if($str!==false) {
                 $criteria = $this->DB->real_escape_string($str);
                 $conditions[] = "`Error` like '%" . $criteria . "%'";
